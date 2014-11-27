@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController storyboardIdentifier="ViewController" id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7L2-HP-9go">
+                                <rect key="frame" x="0.0" y="0.0" width="568" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1e6-yP-qD6">
+                                        <rect key="frame" x="15" y="0.0" width="50" height="50"/>
+                                        <state key="normal" backgroundImage="menu.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="iphonePopOVerScreen:" destination="vXZ-lx-hvc" eventType="touchDown" id="JtZ-HD-pYn"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m3m-VE-c8c">
+                                        <rect key="frame" x="487" y="0.0" width="50" height="50"/>
+                                        <state key="normal" image="more.png">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="iPhoneSettingsAtion:" destination="vXZ-lx-hvc" eventType="touchDown" id="g1F-be-ivY"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.48627450980392156" green="0.56470588235294117" blue="0.54509803921568623" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.068020130040000001" green="0.17051977039999999" blue="0.1430028079" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9aG-RN-fPa" customClass="iCarousel">
+                                <rect key="frame" x="0.0" y="50" width="568" height="270"/>
+                                <color key="backgroundColor" red="0.49019607843137253" green="0.71764705882352942" blue="0.54117647058823526" alpha="0.48999999999999999" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.49019607843137253" green="0.71764705882352942" blue="0.54117647058823526" alpha="0.5" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2ZO-ER-3jt"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="teamCarouselView" destination="9aG-RN-fPa" id="GJ4-cN-gAN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="172" y="212"/>
+        </scene>
+        <!--Pop Over View Controller-->
+        <scene sceneID="p2T-5V-muO">
+            <objects>
+                <viewController storyboardIdentifier="PopOver" id="GKX-Rr-PnT" customClass="PopOverViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VYD-Vv-hAy"/>
+                        <viewControllerLayoutGuide type="bottom" id="vWQ-vp-6Ug"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7HL-7i-MWE">
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZQs-iu-4Ek">
+                                <rect key="frame" x="0.0" y="0.0" width="568" height="50"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="hec-KF-L4l">
+                                        <rect key="frame" x="118" y="11" width="450" height="29"/>
+                                        <segments>
+                                            <segment title="EPL"/>
+                                            <segment title="LA LIGA"/>
+                                            <segment title="BUDESLIGA"/>
+                                        </segments>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="leagueClicked:" destination="GKX-Rr-PnT" eventType="valueChanged" id="gOq-KU-eMJ"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rjh-VG-cqK">
+                                        <rect key="frame" x="25" y="0.0" width="50" height="50"/>
+                                        <state key="normal" image="back.png">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="iPhoneGobackTOMainScreen:" destination="GKX-Rr-PnT" eventType="touchDown" id="jzc-02-JPy"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.48627450980392156" green="0.56470588235294117" blue="0.54509803921568623" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="IQr-59-0LW">
+                                <rect key="frame" x="0.0" y="50" width="568" height="270"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="GKX-Rr-PnT" id="aqr-B0-HXI"/>
+                                    <outlet property="delegate" destination="GKX-Rr-PnT" id="apl-Ia-8gv"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.49019607843137253" green="0.71764705882352942" blue="0.54117647058823526" alpha="0.48999999999999999" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="9WY-Uu-7Nb"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="LeagueSeq" destination="hec-KF-L4l" id="LVA-1r-FHq"/>
+                        <outlet property="popOverTabelView" destination="IQr-59-0LW" id="Cpt-i4-JsS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n3E-q1-YA4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="847" y="-137"/>
+        </scene>
+        <!--Video List View Controller-->
+        <scene sceneID="a9f-8c-Nq1">
+            <objects>
+                <viewController storyboardIdentifier="VideoListViewController" id="49r-dq-ngr" customClass="VideoListViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uTp-Mo-gDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="7it-jb-n9D"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="M65-8B-bJV">
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QmD-vZ-qAw">
+                                <rect key="frame" x="0.0" y="0.0" width="568" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CeG-v8-bRG">
+                                        <rect key="frame" x="25" y="0.0" width="50" height="50"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <state key="normal" title="Back" image="back.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="closeVideoListViewController:" destination="49r-dq-ngr" eventType="touchDown" id="lXS-hh-m4r"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Video Group Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NM3-7n-xYO">
+                                        <rect key="frame" x="100" y="0.0" width="468" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.48627450980392156" green="0.56470588235294117" blue="0.54509803921568623" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.068020130040000001" green="0.17051977039999999" blue="0.1430028079" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dQU-hD-zkl">
+                                <rect key="frame" x="0.0" y="50" width="568" height="270"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="contentSize">
+                                        <size key="value" width="1024" height="1000"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="49r-dq-ngr" id="ahK-NW-3jB"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.49019607843137253" green="0.71764705882352942" blue="0.54117647058823526" alpha="0.48999999999999999" colorSpace="calibratedRGB"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="baseHolderScrollView" destination="dQU-hD-zkl" id="3XG-LS-gui"/>
+                        <outlet property="topBarView" destination="QmD-vZ-qAw" id="gpU-CO-Rbw"/>
+                        <outlet property="videoGroupName" destination="NM3-7n-xYO" id="YEh-uZ-OsT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ebI-bR-XPB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="812" y="609"/>
+        </scene>
+        <!--Video View Controller-->
+        <scene sceneID="TqK-dq-wBZ">
+            <objects>
+                <viewController storyboardIdentifier="VideoViewController" id="6xV-qv-YCt" customClass="VideoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GzY-By-TFy"/>
+                        <viewControllerLayoutGuide type="bottom" id="Y2x-Ja-Cgg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XKO-mW-IRv">
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VIK-b8-ADP">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="6xV-qv-YCt" id="Caf-7a-RlZ"/>
+                                </connections>
+                            </webView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FD4-N1-xvl">
+                                <rect key="frame" x="0.0" y="0.0" width="568" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zCE-C7-3tO">
+                                        <rect key="frame" x="35" y="0.0" width="100" height="30"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <state key="normal" title="Done">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="closeVideo:" destination="6xV-qv-YCt" eventType="touchDown" id="s2L-R0-hKn"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s0i-cm-Jqq">
+                                        <rect key="frame" x="429" y="0.0" width="80" height="30"/>
+                                        <state key="normal" image="twitter.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="shareTweet:" destination="6xV-qv-YCt" eventType="touchDown" id="Ggw-OV-6NP"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1dc-q4-Ej6">
+                                        <rect key="frame" x="334" y="0.0" width="80" height="30"/>
+                                        <state key="normal" image="facebook.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="shareFacebookPost:" destination="6xV-qv-YCt" eventType="touchDown" id="W5a-Q3-q5v"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.48627450980392156" green="0.56470588235294117" blue="0.54509803921568623" alpha="0.5" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.49019607843137253" green="0.71764705882352942" blue="0.54117647058823526" alpha="0.5" colorSpace="calibratedRGB"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="videoWebView" destination="VIK-b8-ADP" id="1fH-ME-lMr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pQm-oz-zkE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1413" y="438"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="back.png" width="80" height="80"/>
+        <image name="facebook.png" width="50" height="50"/>
+        <image name="menu.png" width="80" height="80"/>
+        <image name="more.png" width="80" height="80"/>
+        <image name="twitter.png" width="50" height="50"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

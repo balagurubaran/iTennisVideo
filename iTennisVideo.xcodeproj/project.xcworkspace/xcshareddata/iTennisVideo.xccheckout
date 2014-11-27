@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6800F0F1-495F-4D7A-9591-49BA9160FD69</string>
+	<key>IDESourceControlProjectName</key>
+	<string>iTennisVideo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>0591404F712F6F8289FA87ADA835DDBAFE66A661</key>
+		<string>https://github.com/balagurubaran/iTennisVideo.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>iTennisVideo.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>0591404F712F6F8289FA87ADA835DDBAFE66A661</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/balagurubaran/iTennisVideo.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>0591404F712F6F8289FA87ADA835DDBAFE66A661</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>0591404F712F6F8289FA87ADA835DDBAFE66A661</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iTennisVideo</string>
+		</dict>
+	</array>
+</dict>
+</plist>

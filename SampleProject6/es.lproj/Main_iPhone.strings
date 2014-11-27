@@ -1,0 +1,24 @@
+
+/* Class = "IBUIButton"; normalTitle = "Back"; ObjectID = "CeG-v8-bRG"; */
+"CeG-v8-bRG.normalTitle" = "Back";
+
+/* Class = "IBUILabel"; text = "Video Group Name"; ObjectID = "NM3-7n-xYO"; */
+"NM3-7n-xYO.text" = "Video Group Name";
+
+/* Class = "IBUIButton"; normalTitle = "Back"; ObjectID = "Rjh-VG-cqK"; */
+"Rjh-VG-cqK.normalTitle" = "Back";
+
+/* Class = "IBUILabel"; text = "Video Name"; ObjectID = "cym-hc-9qJ"; */
+"cym-hc-9qJ.text" = "Video Name";
+
+/* Class = "IBUISegmentedControl"; hec-KF-L4l.segmentTitles[0] = "EPL"; ObjectID = "hec-KF-L4l"; */
+"hec-KF-L4l.segmentTitles[0]" = "EPL";
+
+/* Class = "IBUISegmentedControl"; hec-KF-L4l.segmentTitles[1] = "LA LIGA"; ObjectID = "hec-KF-L4l"; */
+"hec-KF-L4l.segmentTitles[1]" = "LA LIGA";
+
+/* Class = "IBUISegmentedControl"; hec-KF-L4l.segmentTitles[2] = "BUDESLIGA"; ObjectID = "hec-KF-L4l"; */
+"hec-KF-L4l.segmentTitles[2]" = "BUDESLIGA";
+
+/* Class = "IBUIButton"; normalTitle = "Done"; ObjectID = "zCE-C7-3tO"; */
+"zCE-C7-3tO.normalTitle" = "Done";
