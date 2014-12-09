@@ -53,7 +53,6 @@ static Favourite *sharedInstance;
         }else{
             [fileContent addObject:videoDetail];
         }
-        NSLog(@"json%@",fileContent);
     }else{
         [fileContent addObject:videoDetail];
     }

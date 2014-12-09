@@ -273,7 +273,6 @@ Favourite *fav;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-    NSLog(@"%d",[searchVideoDetailArray count]);
     return [searchVideoDetailArray count];
     
 }

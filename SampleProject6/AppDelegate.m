@@ -20,7 +20,6 @@
     else
         currentStoryBoard = @"Main_iPhone";
     
-    NSLog(@"%d",self.window.frame.size.width);
     self.window.rootViewController = [[utilize sharedInstance] getStoryBoardViewControllerObject:@"ViewController"];
     return YES;
 }

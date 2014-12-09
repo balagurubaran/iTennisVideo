@@ -57,7 +57,7 @@
                                 <color key="tintColor" red="0.068020130036678075" green="0.17051977040816324" blue="0.14300280791377964" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="j7v-sX-50t">
-                                <rect key="frame" x="0.0" y="144" width="1024" height="624"/>
+                                <rect key="frame" x="0.0" y="144" width="1024" height="524"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Z8I-qy-tm0">
                                     <size key="itemSize" width="310" height="178"/>
