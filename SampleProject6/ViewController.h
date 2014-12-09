@@ -19,6 +19,7 @@
 
 @property (strong, nonatomic) IBOutlet iCarousel *teamCarouselView;
 @property (strong, nonatomic) IBOutlet UILabel *appName;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
 - (IBAction)actionClicked:(UIButton *)sender;
 

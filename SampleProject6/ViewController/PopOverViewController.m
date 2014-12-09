@@ -18,7 +18,7 @@
 @end
 
 NSArray *_tableContent;
-
+NSMutableArray *searchResults;
 @implementation PopOverViewController
 
 @synthesize LeagueSeq;
@@ -49,6 +49,7 @@ NSArray *_tableContent;
 
 - (void) setValueForTableView:(NSArray *)tableContent{
     _tableContent = tableContent;
+    searchResults = [tableContent mutableCopy];
     _popOverTabelView.dataSource = self;
     _popOverTabelView.delegate = self;
     [_popOverTabelView reloadData];
@@ -65,11 +66,31 @@ NSArray *_tableContent;
 }
 */
 
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    searchBar.text = @"";
+    [searchResults removeAllObjects];
+    searchResults = [_tableContent mutableCopy];
+    [_popOverTabelView reloadData];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    [searchResults removeAllObjects];
+    for(TeamDetail *temp in _tableContent){
+        if([[temp.teamName lowercaseString] containsString:[searchText lowercaseString]]){
+            [searchResults addObject:temp];
+        }
+    }
+    if([searchText length] == 0){
+        searchResults = [_tableContent mutableCopy];
+    }
+    [_popOverTabelView reloadData];
+}
+
 #pragma mark -  UITableView DelegateFucntion
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_tableContent count];
+    return [searchResults count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -82,7 +103,7 @@ NSArray *_tableContent;
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
-    TeamDetail *tempValue = [_tableContent objectAtIndex:indexPath.row];
+    TeamDetail *tempValue = [searchResults objectAtIndex:indexPath.row];
     
     cell.textLabel.text = tempValue.teamName;
     

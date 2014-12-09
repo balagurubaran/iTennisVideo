@@ -13,9 +13,9 @@
 #define  SERIES @"SERIES"
 #define  BUDESLIGA @"Budesliga"
 
-#define PLAYERSLIST @"PLAYERS,Novak Djokovic,Roger Federer,Rafael Nadal,Stan Wawrinka,Andy Murray,Kei Nishikori,Tomas Berdych,Marin Cilic,David Ferrer,Milos Raonic,Grigor Dimitrov,Jo Wilfried Tsongs,Ernests Gulbis,Fellciano Lopez,Roberto Bautista Agut,Tommy Robredo"
+#define PLAYERSLIST @"PLAYERS,Novak Djokovic,Roger Federer,Rafael Nadal,Stan Wawrinka,Andy Murray,Kei Nishikori,Tomas Berdych,Marin Cilic,David Ferrer,Milos Raonic,Grigor Dimitrov,Jo Wilfried Tsongs,Ernests Gulbis,Fellciano Lopez,Roberto Bautista Agut,Tommy Robredo,Kevin Anderson,Gael Monfils"
 
-#define SERIESLIST @"SEASON,Aus Open,Davis cup,Rotterdam,Rio De Janerio,Dubai,Acapulco,Indian Wells,Miami,Monte Carlo,Barcelona,Madrid,Rome,Roland Garros,Wimbledon,Hamburg,Washington,Toronto,Cincinnati,US Open,Beijing,Tokyo,Shanghai,Valencia,Basel,Paris,London"
+#define SERIESLIST @"SEASON,Aus Open,Davis cup,Rotterdam,Rio De Janerio,Dubai,Acapulco,Indian Wells,Miami,Monte Carlo,Barcelona,Madrid,Rome,Roland Garros,Wimbledon,Hamburg,Washington,Toronto,Cincinnati,US Open,Beijing,Tokyo,Shanghai,Valencia,Basel,Paris,London,IPTL"
 
 #define MORESETTINGS @[@"New",@"Most viewed",@"Highlights",@"Doubles",@"Singles",@"Records",@"Funny"];
 

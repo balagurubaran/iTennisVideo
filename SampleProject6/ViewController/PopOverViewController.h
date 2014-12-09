@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PopOverViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+@interface PopOverViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 
 //@property (strong, nonatomic) IBOutlet UIView *PopOverView;
 @property (weak, nonatomic) IBOutlet UITableView *popOverTabelView;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *LeagueSeq;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchController;
 
 - (void) setValueForTableView:(NSArray *)tableContent;
 @end

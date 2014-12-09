@@ -23,8 +23,6 @@
 #import "NetworkHandler.h"
 #import "VideoDetailWebservice.h"
 #import "VideoDetail.h"
-#import "VideoThumbNailData.h"
-
 #import "Favourite.h"
 
 @interface ViewController ()
@@ -41,23 +39,24 @@ AdmobViewController *adsController;
 
 settingViewiPhone *settingiPhoneView;
 NSArray            *videoDetailArray;
-UIActivityIndicatorView *spinner;
+NSMutableArray     *searchVideoDetailArray;
+
 Favourite *fav;
 
-NSMutableArray *VideoThumbnailArray;
 
 @implementation ViewController
 
 @synthesize imagesDic = _imagesDic;
 @synthesize images = _images;
 @synthesize teamCarouselView = _teamCarouselView;
+@synthesize spinner = _spinner;
 
 - (void)viewDidLoad{
     [super viewDidLoad];
     
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-
-   // [self.MainVideoCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"videothumbnailcell"];
+    
+    // [self.MainVideoCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"videothumbnailcell"];
     screenWidthRation = 768/self.view.frame.size.width;
     screenHeightRation = 1024/self.view.frame.size.height;
     videoDetailArray = [[NSArray alloc] init];
@@ -66,10 +65,9 @@ NSMutableArray *VideoThumbnailArray;
     
     service = [VideoDetailWebservice sharedInstance];
     service.isRefresh = YES;
-
-
+    
+    
     _images = [[NSMutableArray alloc] init];
-    VideoThumbnailArray = [[NSMutableArray alloc] init];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addVideoListViewController) name:@"addVideoListViewController" object:nil];
     
@@ -78,7 +76,7 @@ NSMutableArray *VideoThumbnailArray;
     [adsController resetAdView:self];
     
     settingiPhoneView = [[settingViewiPhone alloc] init];
-     fav = [Favourite sharedInstance];
+    fav = [Favourite sharedInstance];
     
     
 }
@@ -86,10 +84,10 @@ NSMutableArray *VideoThumbnailArray;
 - (void)viewDidAppear:(BOOL)animated{
     [adsController resetAdView:self];
     [super viewDidAppear:animated];
-   
+    
     if(!loadNewVideo){
         loadNewVideo = YES;
-        [self loadTheVideoList:@"New"];
+        [self loadTheVideoList:@"News"];
     }
 }
 
@@ -125,7 +123,7 @@ NSMutableArray *VideoThumbnailArray;
 }
 
 - (void)loadTheVideoList:(NSString*)searchString{
-    [VideoThumbnailArray removeAllObjects];
+    [searchVideoDetailArray removeAllObjects];
     _appName.text = [NSString stringWithFormat:@"%@ Videos",service.searchString];
     if(service.isRefresh){
         if([service.searchString isEqualToString:@"Favourite"]){
@@ -140,6 +138,7 @@ NSMutableArray *VideoThumbnailArray;
             
             [service getVideoList:searchString detailBlock:^(NSArray *detail) {
                 videoDetailArray = [detail copy];
+                searchVideoDetailArray = [detail mutableCopy];
                 [self loadTheVideoList ];
                 
             }];
@@ -150,17 +149,19 @@ NSMutableArray *VideoThumbnailArray;
 
 - (void) loadTheVideoList{
     /*for(UIView *subView in [_baseHolderScrollView subviews]){
-        [subView removeFromSuperview];
-    }
-    */
-    if([videoDetailArray count] <= 0 ){
+     [subView removeFromSuperview];
+     }
+     */
+    if([searchVideoDetailArray count] <= 0 ){
         return;
     }
     
-    [spinner startAnimating];
-    if(videoDetailArray && [[videoDetailArray objectAtIndex:0] isKindOfClass:[NSString class]] && [[videoDetailArray objectAtIndex:0] isEqualToString:@"No result found"]){
+    [_spinner startAnimating];
+    if(searchVideoDetailArray && [[searchVideoDetailArray objectAtIndex:0] isKindOfClass:[NSString class]] && [[searchVideoDetailArray objectAtIndex:0] isEqualToString:@"No result found"]){
         _appName.text = @"Videos not available";
-        [spinner stopAnimating];
+        [searchVideoDetailArray removeAllObjects];
+        [self.MainVideoCollectionView reloadData];
+        [_spinner stopAnimating];
         return;
     }
     [self loadThumbnailview];
@@ -168,7 +169,9 @@ NSMutableArray *VideoThumbnailArray;
 
 - (void) loadThumbnailview{
     int index = 0;
-    for(VideoDetail *detail in videoDetailArray){
+    int totalVideos = [searchVideoDetailArray count];
+    __block int currentDownloadVideoIndex = 0;
+    for(VideoDetail *detail in searchVideoDetailArray){
         __block UIImage *tempImage;
         if(service.isRefresh){
             NSString *videoId = [self getVideoIDFromURL:detail.videoURL];
@@ -190,30 +193,60 @@ NSMutableArray *VideoThumbnailArray;
                     tempImage = [[UIImage alloc] initWithData:data];
                     
                     int videoIndex = (int)[[response objectForKey:REQUESTID] integerValue];
-                    VideoDetail *temp = [videoDetailArray objectAtIndex:videoIndex];
-                    
-                    
-                    if(tempImage){
-                        [self setImage:tempImage description:temp.videoDescription index:videoIndex];
-                        temp.videoThumbnail = tempImage;
+                    if(videoIndex < [searchVideoDetailArray count]){
+                        VideoDetail *temp = [searchVideoDetailArray objectAtIndex:videoIndex];
+                        if(tempImage){
+                            currentDownloadVideoIndex++;
+                            //[self setImage:tempImage description:temp.videoDescription index:videoIndex];
+                            temp.videoThumbnail = tempImage;
+                            if(currentDownloadVideoIndex == totalVideos){
+                                [self.MainVideoCollectionView reloadData];
+                                [_spinner stopAnimating];
+                            }
+                        }
+                        
                     }
-                    
                 }
                 
             }];
             
         }
         else{
-            tempImage = detail.videoThumbnail;
-            [self setImage:tempImage description:detail.videoDescription index:index];
+            searchVideoDetailArray = [videoDetailArray mutableCopy];
+            [self.MainVideoCollectionView reloadData];
+            [_spinner stopAnimating];
+            //tempImage = detail.videoThumbnail;
+            //[self setImage:tempImage description:detail.videoDescription index:index];
         }
         index++;
     }
-
 }
 
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    searchBar.text = @"";
+    [searchVideoDetailArray removeAllObjects];
+    searchVideoDetailArray = [videoDetailArray mutableCopy];
+    [self loadThumbnailview];
+    [self.MainVideoCollectionView reloadData];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    service.isRefresh = NO;
+    [searchVideoDetailArray removeAllObjects];
+    for(VideoDetail *temp in videoDetailArray){
+        if([[temp.videoDescription lowercaseString] containsString:[searchText lowercaseString]]){
+            [searchVideoDetailArray addObject:temp];
+        }
+    }
+    if([searchText length] == 0){
+        searchVideoDetailArray = [videoDetailArray mutableCopy];
+    }
+    [self.MainVideoCollectionView reloadData];
+}
+
+
 - (void) playVideo:(id)sender{
-    if(spinner.isAnimating)
+    if(_spinner.isAnimating)
         return;
     
     UIButton *btn = (UIButton*)sender;
@@ -229,23 +262,6 @@ NSMutableArray *VideoThumbnailArray;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void) setImage:(UIImage*) image description:(NSString*)videoTitle index:(int)videoIndex{
-    
-    if(image != NULL && videoTitle != (id)[NSNull null]){
-        
-        VideoThumbNailData *temp = [[VideoThumbNailData alloc] init];
-        temp.videoDescreption = videoTitle;
-        temp.videoThumbnail = image;
-        [VideoThumbnailArray addObject:temp];
-        if(VideoThumbnailArray.count == videoDetailArray.count)
-            [self.MainVideoCollectionView reloadData];
-        if(videoIndex == [videoDetailArray count]-1){
-            [spinner stopAnimating];
-        }
-    }
-    
-}
-
 - (NSString*) getVideoIDFromURL:(NSString*)url{
     NSArray* foo = [url componentsSeparatedByString: @"="];
     NSString* videoId = [foo objectAtIndex: 1];
@@ -253,7 +269,9 @@ NSMutableArray *VideoThumbnailArray;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-    return VideoThumbnailArray.count;
+    NSLog(@"%d",[searchVideoDetailArray count]);
+    return [searchVideoDetailArray count];
+    
 }
 // 2
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
@@ -262,9 +280,9 @@ NSMutableArray *VideoThumbnailArray;
 // 3
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     VideoThumbnailView *cell = [cv dequeueReusableCellWithReuseIdentifier:@"videothumbnailcell" forIndexPath:indexPath];
-    VideoThumbNailData *temp = [VideoThumbnailArray objectAtIndex:indexPath.row];
+    VideoDetail *temp = [searchVideoDetailArray objectAtIndex:indexPath.row];
     cell.thumbNailImageView.image = temp.videoThumbnail;
-    cell.thumBNailVideoTitle.text = temp.videoDescreption;
+    cell.thumBNailVideoTitle.text = temp.videoDescription;
     cell.layer.cornerRadius = 10;
     cell.layer.masksToBounds = YES;
     cell.layer.borderColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.5].CGColor;
