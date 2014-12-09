@@ -87,7 +87,7 @@ Favourite *fav;
     
     if(!loadNewVideo){
         loadNewVideo = YES;
-        [self loadTheVideoList:@"News"];
+        [self loadTheVideoList:@"New"];
     }
 }
 
@@ -157,11 +157,13 @@ Favourite *fav;
     }
     
     [_spinner startAnimating];
+    _spinner.hidden = NO;
     if(searchVideoDetailArray && [[searchVideoDetailArray objectAtIndex:0] isKindOfClass:[NSString class]] && [[searchVideoDetailArray objectAtIndex:0] isEqualToString:@"No result found"]){
         _appName.text = @"Videos not available";
         [searchVideoDetailArray removeAllObjects];
         [self.MainVideoCollectionView reloadData];
         [_spinner stopAnimating];
+        _spinner.hidden = YES;
         return;
     }
     [self loadThumbnailview];
@@ -202,6 +204,7 @@ Favourite *fav;
                             if(currentDownloadVideoIndex == totalVideos){
                                 [self.MainVideoCollectionView reloadData];
                                 [_spinner stopAnimating];
+                                _spinner.hidden = YES;
                             }
                         }
                         
@@ -215,6 +218,7 @@ Favourite *fav;
             searchVideoDetailArray = [videoDetailArray mutableCopy];
             [self.MainVideoCollectionView reloadData];
             [_spinner stopAnimating];
+            _spinner.hidden = YES;
             //tempImage = detail.videoThumbnail;
             //[self setImage:tempImage description:detail.videoDescription index:index];
         }
