@@ -74,6 +74,7 @@ videoDetaiBlock completionBlock;
         NSArray *videoDetail = [[NSArray alloc] init];
         
         NSData* data = [jsonValue dataUsingEncoding: NSUTF8StringEncoding];
+        NSString *spaceTab =@"        ";
         
         NSError *error = NULL;
         if(data){
@@ -86,7 +87,8 @@ videoDetaiBlock completionBlock;
                     NSDictionary *eachVideoDetailDic = [[videoDetail objectAtIndex:i] copy];
                 
                     if([eachVideoDetailDic objectForKey:@"description"] != (id)[NSNull null] && [[eachVideoDetailDic objectForKey:@"url"] rangeOfString:@"www.youtube.com"].location != NSNotFound){
-                        eachVideoDetail.videoDescription = [eachVideoDetailDic objectForKey:@"description"];
+                        eachVideoDetail.videoDescription = [spaceTab stringByAppendingString: [eachVideoDetailDic objectForKey:@"description"]];
+                        
                         eachVideoDetail.videoName = [eachVideoDetailDic objectForKey:@"description"];
                         eachVideoDetail.videoURL = [eachVideoDetailDic objectForKey:@"url"];
                         eachVideoDetail.videoBaseURL = [eachVideoDetailDic objectForKey:@"url"];
