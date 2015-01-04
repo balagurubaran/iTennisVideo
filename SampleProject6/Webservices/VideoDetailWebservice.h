@@ -19,6 +19,6 @@ typedef void (^videoDetaiBlock)(NSArray *detail);
 @property (assign) int selectedVideoIndex;
 
 + (id) sharedInstance;
-- (void) getVideoList:(NSString*)searchStrings detailBlock:(videoDetaiBlock)block;
+- (void) getVideoList:(NSString*)searchStrings NumbeOfVideo:(int)number detailBlock:(videoDetaiBlock)block;
 - (void)parseJosnValue:(NSString*)jsonValue;
 @end

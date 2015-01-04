@@ -37,8 +37,7 @@ int updateMainView;
 BOOL  loadNewVideo;
 NSString *currentStoryBoard;
 
-#define VIDEO_PER_PAGE_IPAD 6
-#define VIDEO_PER_PAGE_IPHONE 6
+#define VIDEO_PER_REQUEST 30
 
 
 

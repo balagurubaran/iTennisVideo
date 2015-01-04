@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -104,6 +104,16 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Icr-E0-3x9"/>
                                 </connections>
                             </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQY-Np-Q0I">
+                                <rect key="frame" x="914" y="618" width="100" height="50"/>
+                                <state key="normal" backgroundImage="next.png">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="0.29983428029999998" green="0.29983428029999998" blue="0.29983428029999998" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextClicked:" destination="BYZ-38-t0r" eventType="touchDown" id="Cpz-ph-ONA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.49019607843137253" green="0.71764705882352942" blue="0.54117647058823526" alpha="0.51000000000000001" colorSpace="calibratedRGB"/>
                     </view>
@@ -112,6 +122,7 @@
                     <connections>
                         <outlet property="MainVideoCollectionView" destination="j7v-sX-50t" id="JeT-4t-cVM"/>
                         <outlet property="appName" destination="dIU-mh-1uO" id="zPG-KI-rgv"/>
+                        <outlet property="nextBtn" destination="hQY-Np-Q0I" id="3dI-of-4bq"/>
                         <outlet property="spinner" destination="sfo-jW-x5H" id="GyR-5A-sVX"/>
                     </connections>
                 </viewController>
@@ -361,6 +372,7 @@
         <image name="facebook.png" width="50" height="50"/>
         <image name="menu.png" width="80" height="80"/>
         <image name="more.png" width="80" height="80"/>
+        <image name="next.png" width="192" height="77"/>
         <image name="twitter.png" width="50" height="50"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

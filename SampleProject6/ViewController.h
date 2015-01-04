@@ -15,12 +15,13 @@
     //int updateMainView1;
     //GADBannerView *bannerView_;
 }
-
+@property (weak, nonatomic) IBOutlet UIButton *nextBtn;
 
 @property (strong, nonatomic) IBOutlet iCarousel *teamCarouselView;
 @property (strong, nonatomic) IBOutlet UILabel *appName;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
 - (IBAction)actionClicked:(UIButton *)sender;
+- (IBAction)nextClicked:(id)sender;
 
 @end

@@ -38,11 +38,11 @@ VideoDetailWebservice *service;
 AdmobViewController *adsController;
 
 settingViewiPhone *settingiPhoneView;
-NSArray            *videoDetailArray;
+NSMutableArray            *videoDetailArray;
 NSMutableArray     *searchVideoDetailArray;
 
 Favourite *fav;
-
+int NumberOfPages = 0;
 
 @implementation ViewController
 
@@ -59,7 +59,7 @@ Favourite *fav;
     // [self.MainVideoCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"videothumbnailcell"];
     screenWidthRation = 768/self.view.frame.size.width;
     screenHeightRation = 1024/self.view.frame.size.height;
-    videoDetailArray = [[NSArray alloc] init];
+    videoDetailArray = [[NSMutableArray alloc] init];
     
     [[FileManager sharedInstance] initTeamDetail];
     
@@ -89,6 +89,8 @@ Favourite *fav;
         loadNewVideo = YES;
         [self loadTheVideoList:@"New"];
     }
+    //_nextBtn.frame = CGRectMake(_nextBtn.frame.origin.x + 100, _nextBtn.frame.origin.y, _nextBtn.frame.size.width, _nextBtn.frame.size.height);
+    [self showNextBtn:NO];
 }
 
 
@@ -123,8 +125,11 @@ Favourite *fav;
 }
 
 - (void)loadTheVideoList:(NSString*)searchString{
+    
+    [self changeUIActivityIndicatorViewStatus:YES];
     [searchVideoDetailArray removeAllObjects];
     _appName.text = [NSString stringWithFormat:@"%@ Videos",service.searchString];
+    
     if(service.isRefresh){
         if([service.searchString isEqualToString:@"Favourite"]){
             NSString *temp = [fav readFavouriteList];
@@ -135,9 +140,9 @@ Favourite *fav;
             }
             
         }else{
-            
-            [service getVideoList:searchString detailBlock:^(NSArray *detail) {
-                videoDetailArray = [detail copy];
+            NumberOfPages = 1;
+            [service getVideoList:searchString NumbeOfVideo:VIDEO_PER_REQUEST detailBlock:^(NSArray *detail) {
+                videoDetailArray = [detail mutableCopy];
                 searchVideoDetailArray = [detail mutableCopy];
                 [self loadTheVideoList ];
                 
@@ -156,14 +161,12 @@ Favourite *fav;
         return;
     }
     
-    [_spinner startAnimating];
-    _spinner.hidden = NO;
+    
     if(searchVideoDetailArray && [[searchVideoDetailArray objectAtIndex:0] isKindOfClass:[NSString class]] && [[searchVideoDetailArray objectAtIndex:0] isEqualToString:@"No result found"]){
         _appName.text = @"Videos not available";
         [searchVideoDetailArray removeAllObjects];
         [self.MainVideoCollectionView reloadData];
-        [_spinner stopAnimating];
-        _spinner.hidden = YES;
+        [self changeUIActivityIndicatorViewStatus:NO];
         return;
     }
     [self loadThumbnailview];
@@ -203,8 +206,8 @@ Favourite *fav;
                             temp.videoThumbnail = tempImage;
                             if(currentDownloadVideoIndex == totalVideos){
                                 [self.MainVideoCollectionView reloadData];
-                                [_spinner stopAnimating];
-                                _spinner.hidden = YES;
+                                [self changeUIActivityIndicatorViewStatus:NO];
+                                [self showNextBtn:NO];
                             }
                         }
                         
@@ -217,8 +220,7 @@ Favourite *fav;
         else{
             searchVideoDetailArray = [videoDetailArray mutableCopy];
             [self.MainVideoCollectionView reloadData];
-            [_spinner stopAnimating];
-            _spinner.hidden = YES;
+            [self changeUIActivityIndicatorViewStatus:NO];
             //tempImage = detail.videoThumbnail;
             //[self setImage:tempImage description:detail.videoDescription index:index];
         }
@@ -297,5 +299,69 @@ Favourite *fav;
     service.selectedVideoIndex = indexPath.row;
     UIViewController *vc = [[utilize sharedInstance] getStoryBoardViewControllerObject:@"VideoViewController"];
     [self presentViewController:vc animated:YES completion:NULL];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
+    if (bottomEdge >= scrollView.contentSize.height) {
+        [self showNextBtn:YES];
+    }
+}
+
+- (IBAction)nextClicked:(id)sender {
+    
+    
+    if(_spinner.isAnimating)
+        return;
+    
+    [self changeUIActivityIndicatorViewStatus:YES];
+    NumberOfPages++;
+    [service getVideoList:service.searchString NumbeOfVideo:VIDEO_PER_REQUEST*NumberOfPages detailBlock:^(NSArray *detail) {
+        if(detail && [[detail objectAtIndex:0] isKindOfClass:[NSString class]] && [[detail objectAtIndex:0] isEqualToString:@"No result found"]){
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:@"Maximum number of videos reached" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+            [self changeUIActivityIndicatorViewStatus:NO];
+        }else{
+            [videoDetailArray addObjectsFromArray:detail];
+            searchVideoDetailArray = [videoDetailArray mutableCopy];
+            [self loadTheVideoList ];
+            
+        }
+        
+    }];
+}
+
+- (void) changeUIActivityIndicatorViewStatus:(BOOL)status{
+    if(status){
+        [_spinner startAnimating];
+    }else{
+        [_spinner stopAnimating];
+    }
+    _spinner.hidden = !status;
+    self.view.userInteractionEnabled = !status;
+}
+
+-(void) showNextBtn:(BOOL)show{
+    _nextBtn.hidden = !show;
+    
+    /* CGRect newRect = CGRectMake(_nextBtn.frame.origin.x + 100*(show?-1:1), _nextBtn.frame.origin.y, _nextBtn.frame.size.width, _nextBtn.frame.size.height);
+     
+     [UIView beginAnimations:nil context:NULL]; // animate the following:
+     
+     [UIView animateWithDuration:0.3
+     delay:0.0
+     options: UIViewAnimationOptionCurveEaseOut
+     animations:^
+     {
+     _nextBtn.frame = newRect;
+     }
+     completion:^(BOOL finished)
+     
+     {
+     _nextBtn.hidden = !show;
+     }];
+     
+     [UIView commitAnimations];
+     */
 }
 @end

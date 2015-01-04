@@ -106,14 +106,6 @@ NSMutableArray *searchResults;
     TeamDetail *tempValue = [searchResults objectAtIndex:indexPath.row];
     
     cell.textLabel.text = tempValue.teamName;
-    
-   /* UISwitch *toggleSwitch = [[UISwitch alloc] init];
-    toggleSwitch.tag = tempValue.teamTag;
-    [toggleSwitch setOn:tempValue.isAddedToUserList animated:YES];
-    [toggleSwitch addTarget:self action:@selector(getSwitchState:) forControlEvents:UIControlEventValueChanged];
-    cell.accessoryView = [[UIView alloc] initWithFrame:toggleSwitch.frame];
-    [cell.accessoryView addSubview:toggleSwitch];
-    */
     return cell;
 }
 - (IBAction)leagueClicked:(UISegmentedControl *)sender {
@@ -137,7 +129,7 @@ NSMutableArray *searchResults;
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    TeamDetail *tempValue = _tableContent[indexPath.row];
+    TeamDetail *tempValue = searchResults[indexPath.row];
     service.isRefresh = NO;
     if(![service.searchString isEqualToString:tempValue.teamName]){
         service.isRefresh = YES;

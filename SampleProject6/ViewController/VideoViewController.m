@@ -74,11 +74,11 @@ VideoDetail *detail;
 */
 
 - (IBAction)shareTweet:(UIButton *)sender {
-    [socialNW shareOnSocialNetwork:SLServiceTypeTwitter message:[NSString stringWithFormat:@"I am watching %@",detail.videoName] url:[NSURL URLWithString:detail.videoBaseURL] image:detail.videoThumbnail parentView:self];
+    [socialNW shareOnSocialNetwork:SLServiceTypeTwitter message:[NSString stringWithFormat:@"%@ #itennisvideo",detail.videoName] url:[NSURL URLWithString:detail.videoBaseURL] image:detail.videoThumbnail parentView:self];
 }
 
 - (IBAction)shareFacebookPost:(UIButton *)sender {
-    [socialNW shareOnSocialNetwork:SLServiceTypeFacebook message:[NSString stringWithFormat:@"I am watching %@",detail.videoName] url:[NSURL URLWithString:detail.videoBaseURL] image:detail.videoThumbnail parentView:self];
+    [socialNW shareOnSocialNetwork:SLServiceTypeFacebook message:[NSString stringWithFormat:@"I am watching%@",detail.videoName] url:[NSURL URLWithString:detail.videoBaseURL] image:detail.videoThumbnail parentView:self];
 }
 
 - (void) playVideo{

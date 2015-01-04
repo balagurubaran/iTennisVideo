@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		782B9CA11A25B41F00F4EC8C /* VideoThumbNailData.m in Sources */ = {isa = PBXBuildFile; fileRef = 782B9CA01A25B41F00F4EC8C /* VideoThumbNailData.m */; };
+		7849C62F1A59819400820128 /* next@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7849C62E1A59819400820128 /* next@2x.png */; };
 		787D524B1A221D7400239BA6 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 787D52491A221D7400239BA6 /* libGoogleAdMobAds.a */; };
 		787D524C1A221D7400239BA6 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 787D524A1A221D7400239BA6 /* README.txt */; };
 		9506EB3519F694E2008FA6FA /* menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9506EB3119F694E2008FA6FA /* menu@2x.png */; };
@@ -84,6 +85,7 @@
 /* Begin PBXFileReference section */
 		782B9C9F1A25B41F00F4EC8C /* VideoThumbNailData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VideoThumbNailData.h; path = Model/VideoThumbNailData.h; sourceTree = "<group>"; };
 		782B9CA01A25B41F00F4EC8C /* VideoThumbNailData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VideoThumbNailData.m; path = Model/VideoThumbNailData.m; sourceTree = "<group>"; };
+		7849C62E1A59819400820128 /* next@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "next@2x.png"; sourceTree = "<group>"; };
 		787D522C1A221D7400239BA6 /* DFPBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPBannerView.h; sourceTree = "<group>"; };
 		787D522D1A221D7400239BA6 /* DFPExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPExtras.h; sourceTree = "<group>"; };
 		787D522E1A221D7400239BA6 /* DFPInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPInterstitial.h; sourceTree = "<group>"; };
@@ -534,6 +536,7 @@
 		95F5779919C1BC47008AB518 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				7849C62E1A59819400820128 /* next@2x.png */,
 				95AA66F61A02930200D31F07 /* favourite.png */,
 				9506EB3919F6977A008FA6FA /* back.png */,
 				9506EB3A19F6977A008FA6FA /* back@2x.png */,
@@ -622,6 +625,7 @@
 			files = (
 				9506EB3619F694E2008FA6FA /* menus.png in Resources */,
 				9506EB3519F694E2008FA6FA /* menu@2x.png in Resources */,
+				7849C62F1A59819400820128 /* next@2x.png in Resources */,
 				9591C72C19E69A9B0079EF99 /* twitter.png in Resources */,
 				9507464A19DAFA7900F67B37 /* Localizable.strings in Resources */,
 				9591C72D19E69A9B0079EF99 /* twitter@2x.png in Resources */,
@@ -809,6 +813,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = NO;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: balagurubaran kalingarayan (USLGQG74CE)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SampleProject6/iTennisVideo-Prefix.pch";
@@ -822,7 +827,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = iTennisVideo;
-				PROVISIONING_PROFILE = "9b12cfb9-4de0-4fe4-bf52-1de7ae8eabb4";
+				PROVISIONING_PROFILE = "50e0b934-c1f4-4e67-929a-3269e082de3c";
 				SDKROOT = iphoneos8.1;
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
@@ -836,6 +841,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = NO;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: balagurubaran kalingarayan (USLGQG74CE)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SampleProject6/iTennisVideo-Prefix.pch";
@@ -849,7 +855,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = iTennisVideo;
-				PROVISIONING_PROFILE = "9b12cfb9-4de0-4fe4-bf52-1de7ae8eabb4";
+				PROVISIONING_PROFILE = "50e0b934-c1f4-4e67-929a-3269e082de3c";
 				SDKROOT = iphoneos8.1;
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;

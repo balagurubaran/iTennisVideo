@@ -35,7 +35,7 @@ videoDetaiBlock completionBlock;
     return sharedInstance;
 }
 
-- (void) getVideoList:(NSString*)searchStrings detailBlock:(videoDetaiBlock)block{
+- (void) getVideoList:(NSString*)searchStrings NumbeOfVideo:(int)number detailBlock:(videoDetaiBlock)block{
     
     
     sharedInstance.searchString = searchStrings;
@@ -45,10 +45,11 @@ videoDetaiBlock completionBlock;
         // Load string from file
         NSString *filePath = [[NSBundle mainBundle] pathForResource:@"sample" ofType:@"json"];
         jsonValue = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-       
+        
     }else{
         
-        NSString *urlString = [NSString stringWithFormat:@"http://freekicktube.com/getvideourlforipad.php?team=%@&sports=tennis",sharedInstance.searchString];
+        NSString *urlString = [NSString stringWithFormat:@"http://freekicktube.com/getvideourlforipad.php?team=%@&sports=tennis&max=%d",sharedInstance.searchString,number];
+
         urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
         [handler requestWithURL:urlString completion:^(NSDictionary *response) {
